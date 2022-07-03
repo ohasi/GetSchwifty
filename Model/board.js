@@ -16,6 +16,9 @@ class Board
             for(let j = 0; j < this.size; j++)
             {
                 this.state[i][j] = values[Math.floor(Math.random() * values.length - 1)]
+                if(this.state[i][j] == 0){
+                    this.state[i][j] = '';
+                }
             }
         }
     }

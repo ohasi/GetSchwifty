@@ -11,3 +11,23 @@ header{
     display: flex;
     justify-content: center;
 }
+
+#game{
+    font-size: 5rem;
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+table, td {
+    border: 2px solid;
+    border-collapse: collapse;
+}
+
+td{
+    size: 0ex;
+    width: 5rem;
+    height: 5rem;
+    text-align: center;
+}
