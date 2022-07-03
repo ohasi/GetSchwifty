@@ -6,4 +6,9 @@ class View{
         this.username = document.getElementById('username')
         this.password = document.getElementById('password');
     }
+
+    startGame(){
+        window.location = "/game.html";
+        return new GameView();
+    }
 }
