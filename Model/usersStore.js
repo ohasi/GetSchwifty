@@ -15,8 +15,9 @@ class UsersStore
         {
             return false;
         }
-        newUser = new User(name, password);
+        let newUser = new User(name, password);
         this.users.set(name, newUser);
+        return true;
     }
 
     login(name, password)
