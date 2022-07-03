@@ -1,5 +1,6 @@
 class User{
-    constructor(name, password){
+    constructor(name, password)
+    {
         this.name = name;
         this.password = Symbol(password);
         this.playerLevel =  1;
@@ -8,7 +9,8 @@ class User{
         this.joinDate = Date.now;
     }
 
-    checkPassword(password){
+    checkPassword(password)
+    {
         return this.password.toString() == Symbol.for(password).toString();
     }
 }
