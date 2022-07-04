@@ -17,6 +17,7 @@ class Leaderboard
         {
             this.highScores.pop();
         }
+        this.saveState();
     }
 
     saveState()

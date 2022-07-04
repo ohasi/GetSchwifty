@@ -13,7 +13,6 @@ class LoginController{
         this.model.usersStore.signup(this.view.username.trim());
         if(this.model.usersStore.login(this.view.username.trim()))
         {
-            this.model.usersStore.saveState();
             this.view.moveToGameView();
         }
     }

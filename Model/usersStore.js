@@ -21,6 +21,7 @@ class UsersStore
         }
         let newUser = new User(name);
         this.users.set(name, newUser);
+        this.saveState();
         return true;
     }
 
@@ -32,6 +33,7 @@ class UsersStore
         }
         let user = this.users.get(name);
         this.activeUser = user;
+        this.saveState();
         return true;
     }
 
@@ -42,7 +44,8 @@ class UsersStore
 
     logout()
     {
-        this.activeUser = undefined;
+        this.activeUser = "";
+        this.saveState();
     }
 
     saveState()

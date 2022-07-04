@@ -3,6 +3,6 @@ class User
     constructor(name)
     {
         this.name = name;
-        this.playerLevel =  1;
+        this.level =  2;
     }
 }

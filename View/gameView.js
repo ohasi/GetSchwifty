@@ -29,12 +29,19 @@ class GameView{
         this.gameView.appendChild(boardView);
     }
 
-    setBoardClickListener(func){
-        this.boardClickListener = func;
+    setBoardClickListener(listener)
+    {
+        this.boardClickListener = listener;
     }
 
-    setGenerateBoardClickListener(func){
-        this.generateBoardButton.addEventListener("click", func);
+    setGenerateBoardClickListener(listener)
+    {
+        this.generateBoardButton.addEventListener("click", listener);
+    }
+
+    setChangeUserClickListener(listener)
+    {
+        this.changeUserButton.addEventListener("click", listener);
     }
 
     generateCell(row, column, content)
@@ -43,5 +50,10 @@ class GameView{
         cell.addEventListener("click", () => this.boardClickListener(row,column));
         cell.innerHTML = content;
         return cell;
+    }
+
+    moveToLoginView()
+    {
+        window.location.replace('index.html');
     }
 }
