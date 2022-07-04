@@ -21,12 +21,12 @@ class LoginView{
         window.location.replace('game.html');
     }
 
-    displayLeaderboard(result)
+    displayLeaderboard(highScores)
     {
         let list = document.createElement("ol");
         highScores.forEach(result => {
             let item = document.createElement("li");
-            item.innerHTML = `${result.user.name}: ${result.size}*${result.size} in ${result.moves} moves.`
+            item.innerHTML = `${result.name} (${result.date}): ${result.size}*${result.size} in ${result.moves} moves.`
             list.appendChild(item);
         });
         this.leaderboard.firstChild.remove();

@@ -52,7 +52,8 @@ class Board
         return (inversionCount+this.emptyIndex[0]+1) % 2 == 0;
     }
 
-    isBoardSolved(){
+    isBoardSolved()
+    {
         let arr = [].concat(...this.state);
         arr.splice(this.emptyIndex[0]*this.state.length + this.emptyIndex[1], 1);
         if(this.countInversions(arr) == 0){
@@ -76,7 +77,8 @@ class Board
         return count + this.countInversions(arr.slice(1, arr.length));
     }
 
-    changePlaces(row,column){
+    changePlaces(row,column)
+    {
         if(this.isAdjacentToEmpty(row,column)){
             this.state[this.emptyIndex[0]][this.emptyIndex[1]] = this.state[row][column];
             this.state[row][column] = '';
@@ -87,7 +89,8 @@ class Board
         return false;
     }
 
-    saveState(){
+    saveState()
+    {
         localStorage.setItem(EMPTY_INDEX_NAME, JSON.stringify(this.emptyIndex));
         localStorage.setItem(STATE_NAME, JSON.stringify(this.state));
     }

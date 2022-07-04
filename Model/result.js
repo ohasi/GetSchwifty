@@ -1,10 +1,11 @@
 class Result
 {
-    constructor(user, size, moves, score)
+    constructor(name, size, moves, score, date)
     {
-        this.user = user;
+        this.name = name;
         this.size = size;
         this.moves = moves;
         this.score = score;
+        this.date = date;
     }
 }

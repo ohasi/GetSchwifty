@@ -15,7 +15,7 @@ class UsersStore
 
     signup(name, password)
     {
-        if(this.users.has(name) || this.isNameValid(name))
+        if(this.users.has(name) || this.isNameInvalid(name))
         {
             return false;
         }
@@ -26,7 +26,7 @@ class UsersStore
 
     login(name)
     {
-        if(this.activeUser != undefined || this.isNameValid(name))
+        if(this.isNameInvalid(name))
         {
             return false;
         }
@@ -35,7 +35,7 @@ class UsersStore
         return true;
     }
 
-    isNameValid(name)
+    isNameInvalid(name)
     {
         return name == "";
     }

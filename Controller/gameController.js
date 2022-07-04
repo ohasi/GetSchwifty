@@ -1,27 +1,56 @@
+
+MAX_SCORE=10;
+
 class GameController{
     constructor(view, model, leaderboard)
     {
         this.leaderboard = leaderboard;
         this.view = view;
         this.model = model;
-        this.view.setGenerateBoardClickListener(this.generateBoard);
-        this.view.setBoardClickListener(this.tryMoveSquare);
-        this.model.board.setsetOnSolvedListener(() => alert('solved'));
+        this.view.setGenerateBoardClickListener(() => this.generateBoard());
+        this.view.setBoardClickListener((row,column) => this.tryMoveSquare(row,column));
     }
     
-    generateBoard()
+    generateBoard(size = this.view.boardSize)
     {
-        let board = model.generateBoard(view.boardSize);
-        view.generateView(board);
+        if(size >= 2)
+        {
+            this.boardSize = size;
+            this.moveCount = 0;
+            let board = model.generateBoard(this.boardSize);
+            this.model.board.setOnSolvedListener(() => this.onBoardSolved());
+            this.view.generateView(board);
+        }
+        else 
+        {
+            alert("Board can't be smaller than 2*2")
+        }
     }
 
     tryMoveSquare(row,column)
     {
-        if(model.board.changePlaces(row,column))
+        if(this.model.board.changePlaces(row,column))
         {
+            this.moveCount++;
             let board = model.board.state;
-            view.generateView(board);
+            this.view.generateView(board);
         }
+    }
+
+    onBoardSolved()
+    {
+        let today = new Date();
+        let result = new Result(this.model.usersStore.activeUser.name, this.boardSize, this.moveCount + 1, this.calculateScore(), 
+        `${today.getDate()}.${today.getMonth() + 1}.${today.getFullYear()}`);
+        leaderboard.addResult(result);
+        leaderboard.saveState();
+        alert('Board solved! can you solve the next one?');
+        this.generateBoard(Number(this.boardSize) + 1);
+    }
+
+    calculateScore()
+    {
+        return ((this.boardSize ** 4) * MAX_SCORE) - this.moveCount;
     }
 }
 

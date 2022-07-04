@@ -12,7 +12,7 @@ class Leaderboard
     addResult(result)
     {
         this.highScores.push(result);
-        this.highScores.sort((result1, result2) => result2-result1);
+        this.highScores.sort((result1, result2) => result2.score-result1.score);
         while(this.highScores.length > SCORE_COUNT)
         {
             this.highScores.pop();
