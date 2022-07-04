@@ -23,6 +23,9 @@ class Board
                 values.splice(index, 1);
             }
         }
+        if(!this.isSolvable()){
+            this.generateBoard();
+        }
         return this.state;
     }
 
@@ -41,6 +44,11 @@ class Board
         {
             inversionCount += this.countInversions(checkableFormat.slice(i, checkableFormat.length-1));
         }
+        if(this.state.length % 2 == 1)
+        {
+            return inversionCount % 2 == 0;
+        }
+        return (inversionCount+this.emptyIndex[0]+1) % 2 == 0;
     }
 
     countInversions(arr)
