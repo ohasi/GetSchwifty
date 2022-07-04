@@ -37,13 +37,7 @@ class Board
 
     isSolvable()
     {
-        let inversionCount = 0;
-        let checkableFormat = [];
-        this.state.forEach((row) => checkableFormat.concat(row));
-        for(let i = 0; i < checkableFormat.length; i++)
-        {
-            inversionCount += this.countInversions(checkableFormat.slice(i, checkableFormat.length-1));
-        }
+        let inversionCount = this.countInversions(checkableFormat);
         if(this.state.length % 2 == 1)
         {
             return inversionCount % 2 == 0;
@@ -51,16 +45,22 @@ class Board
         return (inversionCount+this.emptyIndex[0]+1) % 2 == 0;
     }
 
-    countInversions(arr)
+    countInversions()
     {
+        let arr = [].concat(...this.state);
+        arr.splice(this.emptyIndex[0]*this.state.length + this.emptyIndex[1], 1);
+        if(arr.length == 1){
+            return 0;
+        }
+        
         let count = 0;
         arr.forEach((num) => {
-            if(num > arr[0])
+            if(num < arr[0])
             {
                 count++;
             }
         })
-        return count;
+        return count + this.countInversions(arr.slice(1, arr.length));
     }
 
     changePlaces(row,column){
