@@ -11,6 +11,7 @@ class GameController{
         this.view.setChangeUserClickListener(() => this.changeUser());
         this.view.setBoardClickListener((row,column) => this.tryMoveSquare(row,column));
         this.displayUserData();
+        this.generateBoard(2);
     }
     
     generateBoard(size = this.view.boardSize)
