@@ -33,9 +33,9 @@ class Board
 
     changePlaces(row,column){
         if(this.isAdjacentToEmpty(row,column)){
-            this.state[this.emptyIndex[0], this.emptyIndex[1]] = this.state[row,column];
-            this.state[row,column] = '';
-            this.emptyIndex = row, column;
+            this.state[this.emptyIndex[0]][this.emptyIndex[1]] = this.state[row][column];
+            this.state[row][column] = '';
+            this.emptyIndex = [row, column];
             return true;
         }
         return false;
