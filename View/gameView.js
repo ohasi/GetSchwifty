@@ -4,6 +4,12 @@ class GameView{
         this.view = document.getElementById('game');
         this.userInfo = document.getElementById('user-info');
         this.changeUser = document.getElementById('change-user');
+        this.generateBoard = document.getElementById('generate-board');
+        this.boardSize = document.getElementById('board-size');
+    }
+
+    get boardSize(){
+        return this.boardSize.value;
     }
 
     generateView(board, onClick){
