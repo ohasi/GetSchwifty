@@ -29,10 +29,6 @@ class GameView{
         this.gameView.appendChild(boardView);
     }
 
-    refreshView(){
-
-    }
-
     setBoardClickListener(func){
         this.boardClickListener = func;
     }

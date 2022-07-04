@@ -1,3 +1,6 @@
+const ACTIVE_USER_NAME = "activeUser";
+const USERS_NAME = "users";
+
 class UsersStore
 {
     
@@ -33,5 +36,20 @@ class UsersStore
     logout()
     {
         this.activeUser = undefined;
+    }
+
+    saveState(){
+        localStorage.setItem(USERS_NAME, JSON.stringify(Object.fromEntries(this.users)));
+        localStorage.setItem(ACTIVE_USER_NAME, JSON.stringify(this.activeUser));
+    }
+
+    loadState(){
+        let activeUser = localStorage.getItem(ACTIVE_USER_NAME);
+        let users = localStorage.getItem(USERS_NAME);
+        if(activeUser != undefined && users != undefined)
+        {
+            this.activeUser = JSON.parse(activeUser);
+            this.users = new Map(Object.fromEntries(JSON.parse(state)));
+        }
     }
 }

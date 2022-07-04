@@ -12,7 +12,7 @@ class LoginController{
         if(model.usersStore.signup(view.username, view.password))
         {
             model.usersStore.login(view.username, view.password);
-            localStorage.setItem('usersStore', JSON.stringify(model.usersStore));
+            model.usersStore.saveState();
             view.startGame();
         }
     } 
@@ -27,12 +27,7 @@ class LoginController{
 }
 
 var usersStore = new UsersStore();
-var prevStore = JSON.parse(localStorage.getItem('usersStore'));
-if(prevStore != null)
-{
-    usersStore.activeUser = prevStore.activeUser;
-}
-localStorage.removeItem('usersStore');
+usersStore.loadState();
 var view = new LoginView();
 var model = new Model(usersStore);
 var controller = new LoginController(view, model);

@@ -88,7 +88,8 @@ class Board
         localStorage.setItem(STATE_NAME, JSON.stringify(this.state));
     }
 
-    loadState(){
+    loadState()
+    {
         let emptyIndex = localStorage.getItem(EMPTY_INDEX_NAME);
         let state = localStorage.getItem(STATE_NAME);
         if(emptyIndex != undefined && state != undefined)
