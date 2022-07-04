@@ -1,6 +1,7 @@
-
-
 class Result
 {
+    constructor()
+    {
 
+    }
 }

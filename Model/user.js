@@ -1,4 +1,4 @@
-const MAX_SCORE
+const MAX_SCORE = 10
 
 class User
 {
@@ -9,5 +9,10 @@ class User
         this.moveCount = 0;
         this.boardSize = 0;
         this.joinDate = Date.now;
+    }
+
+    calculateScore()
+    {
+        return maxScore - this.moveCount
     }
 }
