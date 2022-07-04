@@ -3,8 +3,8 @@ class LoginController{
     {
         this.view = view;
         this.model = model;
-        this.view.login.addEventListener("click", this.login);
-        this.view.signup.addEventListener("click", this.signup);
+        this.view.setLoginListener(this.login);
+        this.view.setSignupListener(this.signup);
     }
 
     signup()
@@ -21,8 +21,7 @@ class LoginController{
     {
         if(model.usersStore.login(view.username, view.password))
         {
-            localStorage.setItem('usersStore', JSON.stringify(model.usersStore));
-            view.startGame();
+            this.login();
         }
     }
 }

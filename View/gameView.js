@@ -14,18 +14,23 @@ class GameView{
 
     generateView(board)
     {
+
         let boardView = document.createElement("table");
         for(let i = 0; i < board.length; i++)
         {
             let row = document.createElement("tr");
             for(let j = 0; j < board.length; j++)
             {
-                row.appendChild(this.generateCell(i, j, board));
+                row.appendChild(this.generateCell(i, j, board[i][j]));
             }
             boardView.appendChild(row);
         }
         this.gameView.firstChild.remove();
         this.gameView.appendChild(boardView);
+    }
+
+    refreshView(){
+
     }
 
     setBoardClickListener(func){
@@ -36,11 +41,11 @@ class GameView{
         this.generateBoardButton.addEventListener("click", func);
     }
 
-    generateCell(row, column, board)
+    generateCell(row, column, content)
     {
         let cell = document.createElement("td");
         cell.addEventListener("click", () => this.boardClickListener(row,column));
-        cell.innerHTML = board[row][column];
+        cell.innerHTML = content;
         return cell;
     }
 }

@@ -1,21 +1,33 @@
 class LoginView{
     constructor()
     {
-        this.login = document.getElementById('login');
-        this.signup = document.getElementById('signup');
+        this.loginButton = document.getElementById('login');
+        this.signupButton = document.getElementById('signup');
+        this.usernameInput = document.getElementById('username');
+        this.passwordInput = document.getElementById('password');
     }
 
     get username() 
     {
-        return document.getElementById('username').value;
+        return this.usernameInput.value;
     }
 
     get password() 
     {
-        return document.getElementById('password').value;
+        return this.passwordInput.value;
     }
 
-    startGame()
+    setLoginListener(listener)
+    {
+        this.loginButton.addEventListener('click', listener);
+    }
+
+    setSignupListener(listener)
+    {
+        this.signupButton.addEventListener('click', listener);
+    }
+
+    moveToGameView()
     {
         window.location.replace('game.html');
     }

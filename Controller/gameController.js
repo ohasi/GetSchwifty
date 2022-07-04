@@ -10,7 +10,7 @@ class GameController{
     generateBoard()
     {
         let board = model.generateBoard(view.boardSize);
-        view.generateView(board, this.tryMoveSquare);
+        view.generateView(board);
     }
 
     tryMoveSquare(row,column)
