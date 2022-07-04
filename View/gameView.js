@@ -1,11 +1,10 @@
 class GameView{
-    constructor(listener)
+    constructor()
     {
-        this.view = document.getElementById('game');
+        this.gameView = document.getElementById('game');
         this.userInfo = document.getElementById('user-info');
-        this.changeUser = document.getElementById('change-user');
-        this.generateBoard = document.getElementById('generate-board');
-        this.firstClick = 0;
+        this.changeUserButton = document.getElementById('change-user');
+        this.generateBoardButton = document.getElementById('generate-board');
     }
 
     get boardSize()
@@ -25,18 +24,22 @@ class GameView{
             }
             boardView.appendChild(row);
         }
-        this.view.firstChild.remove();
-        this.view.appendChild(boardView);
+        this.gameView.firstChild.remove();
+        this.gameView.appendChild(boardView);
     }
 
-    setClickListener(func){
-        this.onClickListener = func;
+    setBoardClickListener(func){
+        this.boardClickListener = func;
+    }
+
+    setGenerateBoardClickListener(func){
+        this.generateBoardButton.addEventListener("click", func);
     }
 
     generateCell(row, column, board)
     {
         let cell = document.createElement("td");
-        cell.addEventListener("click", () => this.onClickListener(row,column));
+        cell.addEventListener("click", () => this.boardClickListener(row,column));
         cell.innerHTML = board[row][column];
         return cell;
     }

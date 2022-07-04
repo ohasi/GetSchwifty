@@ -3,8 +3,8 @@ class GameController{
     {
         this.view = view;
         this.model = model;
-        this.view.generateBoard.addEventListener("click", this.generateBoard);
-        this.view.setClickListener(this.tryMoveSquare);
+        this.view.setGenerateBoardClickListener(this.generateBoard);
+        this.view.setBoardClickListener(this.tryMoveSquare);
     }
     
     generateBoard()
