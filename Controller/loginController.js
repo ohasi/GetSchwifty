@@ -13,7 +13,7 @@ class LoginController{
         {
             model.usersStore.login(view.username, view.password);
             model.usersStore.saveState();
-            view.startGame();
+            view.moveToGameView();
         }
     } 
     

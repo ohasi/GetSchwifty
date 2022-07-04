@@ -49,7 +49,7 @@ class UsersStore
         if(activeUser != undefined && users != undefined)
         {
             this.activeUser = JSON.parse(activeUser);
-            this.users = new Map(Object.fromEntries(JSON.parse(state)));
+            this.users = new Map(Object.entries(JSON.parse(users)));
         }
     }
 }
