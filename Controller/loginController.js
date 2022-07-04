@@ -18,7 +18,6 @@ class LoginController{
 }
 
 var usersStore = new UsersStore();
-usersStore.loadState();
 var view = new LoginView();
 var model = new Model(usersStore);
 var controller = new LoginController(view, model);

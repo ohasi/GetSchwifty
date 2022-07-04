@@ -24,7 +24,6 @@ class GameController{
 }
 
 var usersStore = new UsersStore();
-usersStore.loadState();
 var view = new GameView();
 var model = new Model(usersStore);
 var controller = new GameController(view, model);

@@ -10,6 +10,7 @@ class UsersStore
     constructor()
     {
         this.users = new Map();
+        this.loadState();
     }
 
     signup(name, password)
@@ -44,12 +45,14 @@ class UsersStore
         this.activeUser = undefined;
     }
 
-    saveState(){
+    saveState()
+    {
         localStorage.setItem(USERS_NAME, JSON.stringify(Object.fromEntries(this.users)));
         localStorage.setItem(ACTIVE_USER_NAME, JSON.stringify(this.activeUser));
     }
 
-    loadState(){
+    loadState()
+    {
         let activeUser = localStorage.getItem(ACTIVE_USER_NAME);
         let users = localStorage.getItem(USERS_NAME);
         if(activeUser != undefined && users != undefined)
