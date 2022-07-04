@@ -1,10 +1,12 @@
 class GameController{
-    constructor(view, model)
+    constructor(view, model, leaderboard)
     {
+        this.leaderboard = leaderboard;
         this.view = view;
         this.model = model;
         this.view.setGenerateBoardClickListener(this.generateBoard);
         this.view.setBoardClickListener(this.tryMoveSquare);
+        this.model.board.setsetOnSolvedListener(() => alert('solved'));
     }
     
     generateBoard()
@@ -23,7 +25,8 @@ class GameController{
     }
 }
 
+var leaderboard = new Leaderboard();
 var usersStore = new UsersStore();
 var view = new GameView();
 var model = new Model(usersStore);
-var controller = new GameController(view, model);
+var controller = new GameController(view, model, leaderboard);
