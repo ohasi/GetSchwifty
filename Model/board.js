@@ -56,7 +56,7 @@ class Board
     {
         let arr = [].concat(...this.state);
         arr.splice(this.emptyIndex[0]*this.state.length + this.emptyIndex[1], 1);
-        if(this.countInversions(arr) == 0){
+        if(this.countInversions(arr) == 0 && this.emptyIndex[0] == this.state.length - 1 && this.emptyIndex[1] == this.state.length - 1){
             this.onSolvedListener();
         }
     }

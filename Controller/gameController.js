@@ -29,18 +29,22 @@ class GameController{
 
     tryMoveSquare(row,column)
     {
+        this.moveCount++;
         if(this.model.board.changePlaces(row,column))
         {
-            this.moveCount++;
             let board = model.board.state;
             this.view.generateView(board);
+        }
+        else
+        {
+            this.moveCount--;
         }
     }
 
     onBoardSolved()
     {
         let today = new Date();
-        let result = new Result(this.model.usersStore.activeUser.name, this.boardSize, this.moveCount + 1, this.calculateScore(), 
+        let result = new Result(this.model.usersStore.activeUser.name, this.boardSize, this.moveCount, this.calculateScore(), 
         `${today.getDate()}.${today.getMonth() + 1}.${today.getFullYear()}`);
         leaderboard.addResult(result);
         leaderboard.saveState();
