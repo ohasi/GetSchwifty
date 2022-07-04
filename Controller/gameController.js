@@ -1,13 +1,24 @@
 class GameController{
-    constructor(view, model){
+    constructor(view, model)
+    {
         this.view = view;
         this.model = model;
-        this.view.generateBoard.addEventListener("click", this.generateBoard);
+        this.view.generateBoard.addEventListener("click", () => this.generateBoard());
+    }
+    
+    generateBoard()
+    {
+        let board = model.generateBoard(view.boardSize);
+        view.generateView(board, this.tryMoveSquare);
     }
 
-    generateBoard(){
-        let board = model.generateBoard(view.boardSize)
-        view.generateView(board, this.onClick);
+    tryMoveSquare(row,column)
+    {
+        if(model.board.changePlaces(row,column))
+        {
+            var board = model.state;
+            view.generateView(board, this);
+        }
     }
 }
 
