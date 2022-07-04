@@ -23,7 +23,7 @@ class Board
                 values.splice(index, 1);
             }
         }
-        if(!this.isSolvable()){
+        if(!this.isSolvable() || this.isBoardSolved()){
             this.generateBoard();
         }
         return this.state;
@@ -37,7 +37,9 @@ class Board
 
     isSolvable()
     {
-        let inversionCount = this.countInversions(checkableFormat);
+        let arr = [].concat(...this.state);
+        arr.splice(this.emptyIndex[0]*this.state.length + this.emptyIndex[1], 1);
+        let inversionCount = this.countInversions(arr);
         if(this.state.length % 2 == 1)
         {
             return inversionCount % 2 == 0;
@@ -45,10 +47,16 @@ class Board
         return (inversionCount+this.emptyIndex[0]+1) % 2 == 0;
     }
 
-    countInversions()
-    {
+    isBoardSolved(){
         let arr = [].concat(...this.state);
         arr.splice(this.emptyIndex[0]*this.state.length + this.emptyIndex[1], 1);
+        if(this.countInversions(arr) == 0){
+            console.log("win");
+        }
+    }
+
+    countInversions(arr)
+    {
         if(arr.length == 1){
             return 0;
         }
@@ -68,6 +76,7 @@ class Board
             this.state[this.emptyIndex[0]][this.emptyIndex[1]] = this.state[row][column];
             this.state[row][column] = '';
             this.emptyIndex = [row, column];
+            this.isBoardSolved();
             return true;
         }
         return false;
