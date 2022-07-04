@@ -55,7 +55,7 @@ class Board
     {
         let count = 0;
         arr.forEach((num) => {
-            if(num > arr[0])
+            if(num < arr[0])
             {
                 count++;
             }
