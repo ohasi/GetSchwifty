@@ -17,7 +17,7 @@ class Board
             this.state[i] = []
             for(let j = 0; j < this.size; j++)
             {
-                this.state[i][j] = values.splice(Math.floor(Math.random() * values.length), 1);
+                this.state[i][j] = values.splice(Math.floor(Math.random() * values.length), 1)[0];
                 if(this.state[i][j] == 0){
                     this.state[i][j] = '';
                     this.emptyIndex = [i,j];

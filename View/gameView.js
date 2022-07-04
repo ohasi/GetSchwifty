@@ -56,4 +56,9 @@ class GameView{
     {
         window.location.replace('index.html');
     }
+
+    displayUserInfo(user)
+    {
+        this.userInfo.innerHTML = `${user.name}, Level ${user.level}`;
+    }
 }

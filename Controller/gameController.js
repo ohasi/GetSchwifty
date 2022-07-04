@@ -10,6 +10,7 @@ class GameController{
         this.view.setGenerateBoardClickListener(() => this.generateBoard());
         this.view.setChangeUserClickListener(() => this.changeUser());
         this.view.setBoardClickListener((row,column) => this.tryMoveSquare(row,column));
+        this.displayUserData();
     }
     
     generateBoard(size = this.view.boardSize)
@@ -61,6 +62,7 @@ class GameController{
         leaderboard.addResult(result);
         alert('Board solved! can you solve the next one?');
         this.generateBoard(Number(this.boardSize) + 1);
+        this.displayUserData();
     }
 
     calculateScore()
@@ -70,7 +72,7 @@ class GameController{
 
     displayUserData()
     {
-
+        this.view.displayUserInfo(this.model.usersStore.activeUser);
     }
 }
 
