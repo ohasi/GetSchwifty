@@ -3,19 +3,20 @@ class LoginView{
     {
         this.login = document.getElementById('login');
         this.signup = document.getElementById('signup');
-        this.username = document.getElementById('username');
-        this.password = document.getElementById('password');
     }
 
-    getUsername() {
-        return this.username.value;
+    get username() 
+    {
+        return document.getElementById('username').value;
     }
 
-    getPassword() {
-        return this.password.value;
+    get password() 
+    {
+        return document.getElementById('password').value;
     }
 
-    startGame(){
+    startGame()
+    {
         window.location.replace('game.html');
     }
 }

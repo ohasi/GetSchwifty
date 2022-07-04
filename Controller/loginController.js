@@ -9,22 +9,31 @@ class LoginController{
 
     signup()
     {
-        if(model.usersStore.signup(view.getUsername(), view.getPassword()))
+        if(model.usersStore.signup(view.username, view.password))
         {
-            controller.login();
+            model.usersStore.login(view.username, view.password);
+            localStorage.setItem('usersStore', JSON.stringify(model.usersStore));
+            view.startGame();
         }
     } 
     
     login()
     {
-        if(model.usersStore.login(view.getUsername(), view.getPassword()))
+        if(model.usersStore.login(view.username, view.password))
         {
+            localStorage.setItem('usersStore', JSON.stringify(model.usersStore));
             view.startGame();
         }
     }
 }
 
-var view = new LoginView();
 var usersStore = new UsersStore();
+var prevStore = JSON.parse(localStorage.getItem('usersStore'));
+if(prevStore != null)
+{
+    usersStore.activeUser = prevStore.activeUser;
+}
+localStorage.removeItem('usersStore');
+var view = new LoginView();
 var model = new Model(usersStore);
 var controller = new LoginController(view, model);

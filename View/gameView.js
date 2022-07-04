@@ -5,11 +5,11 @@ class GameView{
         this.userInfo = document.getElementById('user-info');
         this.changeUser = document.getElementById('change-user');
         this.generateBoard = document.getElementById('generate-board');
-        this.boardSize = document.getElementById('board-size');
     }
 
-    get boardSize(){
-        return this.boardSize.value;
+    get boardSize()
+    {
+        return document.getElementById('board-size').value;
     }
 
     generateView(board, onClick){
@@ -23,6 +23,7 @@ class GameView{
             }
             boardView.appendChild(row);
         }
+        this.view.firstChild.remove();
         this.view.appendChild(boardView);
     }
 

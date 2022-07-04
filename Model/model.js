@@ -1,13 +1,12 @@
-class Model{
-    constructor(usersStore, board){
-        this.usersStore = usersStore;
-        this.board = board;
+class Model
+{
     constructor(usersStore){
         this.usersStore = usersStore;
     }
 
-    generateBoard(size){
+    generateBoard(size)
+    {
         this.board = new Board(size);
-        return this.board;
+        return this.board.generateBoard();
     }
 }
