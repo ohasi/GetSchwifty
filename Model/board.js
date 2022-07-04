@@ -24,7 +24,7 @@ class Board
                 }
             }
         }
-        if(!this.isSolvable() || this.isBoardSolved()){
+        if(!this.isSolvable()){
             this.generateBoard();
         }
         return this.state;
@@ -41,6 +41,10 @@ class Board
         let arr = [].concat(...this.state);
         arr.splice(this.emptyIndex[0]*this.state.length + this.emptyIndex[1], 1);
         let inversionCount = this.countInversions(arr);
+        if(inversionCount == 0)
+        {
+            return false;
+        }
         if(this.state.length % 2 == 1)
         {
             return inversionCount % 2 == 0;
@@ -52,7 +56,7 @@ class Board
         let arr = [].concat(...this.state);
         arr.splice(this.emptyIndex[0]*this.state.length + this.emptyIndex[1], 1);
         if(this.countInversions(arr) == 0){
-            console.log("win");
+            this.onSolvedListener();
         }
     }
 
@@ -97,5 +101,10 @@ class Board
             this.emptyIndex = JSON.parse(emptyIndex);
             this.state = JSON.parse(state);
         }
+    }
+
+    setOnSolvedListener(listener)
+    {
+        this.onSolvedListener = listener;
     }
 }
