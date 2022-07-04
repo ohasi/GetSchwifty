@@ -1,3 +1,6 @@
+const EMPTY_INDEX_NAME = "emptyIndex";
+const STATE_NAME = "state";
+
 class Board
 {
     constructor(size)
@@ -14,13 +17,11 @@ class Board
             this.state[i] = []
             for(let j = 0; j < this.size; j++)
             {
-                let index = Math.floor(Math.random() * values.length);
-                this.state[i][j] = values[index];
+                this.state[i][j] = values.splice(Math.floor(Math.random() * values.length), 1);
                 if(this.state[i][j] == 0){
                     this.state[i][j] = '';
                     this.emptyIndex = [i,j];
                 }
-                values.splice(index, 1);
             }
         }
         if(!this.isSolvable() || this.isBoardSolved()){
@@ -32,7 +33,7 @@ class Board
     isAdjacentToEmpty(row,column)
     {
         return (Math.abs(row - this.emptyIndex[0]) == 1 && column - this.emptyIndex[1] == 0) ||
-                (Math.abs(column - this.emptyIndex[1]) == 1 && row - this.emptyIndex[0] == 0);
+        (Math.abs(column - this.emptyIndex[1]) == 1 && row - this.emptyIndex[0] == 0);
     }
 
     isSolvable()
@@ -80,5 +81,20 @@ class Board
             return true;
         }
         return false;
+    }
+
+    saveState(){
+        localStorage.setItem(EMPTY_INDEX_NAME, JSON.stringify(this.emptyIndex));
+        localStorage.setItem(STATE_NAME, JSON.stringify(this.state));
+    }
+
+    loadState(){
+        let emptyIndex = localStorage.getItem(EMPTY_INDEX_NAME);
+        let state = localStorage.getItem(STATE_NAME);
+        if(emptyIndex != undefined && state != undefined)
+        {
+            this.emptyIndex = JSON.parse(emptyIndex);
+            this.state = JSON.parse(state);
+        }
     }
 }
