@@ -39,12 +39,20 @@ class Board
         this.state.forEach((row) => checkableFormat.concat(row));
         for(let i = 0; i < checkableFormat.length; i++)
         {
-            inversionCount += this.countInversions(checkableFormat, i);
+            inversionCount += this.countInversions(checkableFormat.slice(i, checkableFormat.length-1));
         }
     }
 
-    countInversions(arr, startIndex){
-
+    countInversions(arr)
+    {
+        let count = 0;
+        arr.forEach((num) => {
+            if(num > arr[0])
+            {
+                count++;
+            }
+        })
+        return count;
     }
 
     changePlaces(row,column){
