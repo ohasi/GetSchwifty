@@ -14,23 +14,29 @@ class UsersStore
 
     signup(name, password)
     {
-        if(this.users.has(name))
+        if(this.users.has(name) || this.isNameValid(name))
         {
             return false;
         }
-        let newUser = new User(name, password);
+        let newUser = new User(name);
         this.users.set(name, newUser);
         return true;
     }
 
-    login(name, password)
+    login(name)
     {
-        if(this.activeUser != undefined || !this.users.has(name) || !this.users.get(name).checkPassword(password))
+        if(this.activeUser != undefined || this.isNameValid(name))
         {
             return false;
         }
-        this.activeUser = this.users.get(name);
+        let user = this.users.get(name);
+        this.activeUser = user;
         return true;
+    }
+
+    isNameValid(name)
+    {
+        return name == "";
     }
 
     logout()
